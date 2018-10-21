@@ -21,4 +21,10 @@ export class MoviesService {
   search(data):Observable<any>{
     return this.http.post(`${this.moviesUrl}/search`,data);
   }
+
+  auto(data):Observable<any>{
+    return this.http.post(`${this.moviesUrl}/autocomplete`,data);
+  }
+
+
 }

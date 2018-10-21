@@ -22,7 +22,7 @@
             
                 <mat-autocomplete #auto="matAutocomplete">
                     
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    <mat-option *ngFor="let option of filteredOptions" [value]="option">
                       {{ option }}
                     </mat-option>
                   </mat-autocomplete>
@@ -52,12 +52,12 @@
             </mat-card>
             
 
-      bla
+      
         <mat-card  *ngIf="response">
-            <h1 class="mat-card-title">Search</h1>
+           
         
         
-        <h2>Response</h2> 
+        <h2>Search Result</h2> 
         <h4>Query:</h4> 
         <p>
           {{response.query}}
@@ -70,10 +70,32 @@
         
         
         <h4>Ranks:</h4> 
-        <ul>
-          <li *ngFor="let rankLine of response.ranks">{{rankLine}}</li>
+
+        <table style="width:100%">
+          <tr>
+            <th>Title</th>
+            <th>Description</th> 
+            <th>Rank</th>
+          </tr>
+          <tr *ngFor="let rankLine of response.ranks">
+            <td>   {{rankLine.title}}</td>
+            <td>   <div [innerHTML]="rankLine.description">
+            </div></td> 
+            <td> {{rankLine.rank}}</td>
+          </tr>
+         
+        </table>
+      
+        <!-- <ul>
+          <li *ngFor="let rankLine of response.ranks">
+            {{rankLine.title}}
+            <div [innerHTML]="rankLine.description">
+            </div>
+           
+            {{rankLine.rank}}
+          </li>
         </ul>
-        
+         -->
         
         
         </mat-card>
