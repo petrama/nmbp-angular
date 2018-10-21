@@ -19,8 +19,8 @@ export class SearchComponent implements OnInit {
 
   response=null;
 
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  filteredOptions: string[] = ['One', 'Two', 'Three'];
+
   //filteredOptions:any[];
 
   constructor(
@@ -36,25 +36,8 @@ export class SearchComponent implements OnInit {
 
     this.buildForm();
 
-
-    this.filteredOptions = this.form.controls['userQuery'].valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
-
-      //this.filteredOptions = []
-  
-
-  
-
-
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
 
 
 
@@ -66,16 +49,19 @@ export class SearchComponent implements OnInit {
       }
     );
 
-    // this.form.controls.userQuery.valueChanges.subscribe(
-    //   value=>{
+    this.form.controls.userQuery.valueChanges.subscribe(
+      value=>{
 
-    //     this.service.auto(this.form.value).subscribe(
-    //       res=>this.filteredOptions=res.options,
-    //       err=>console.log(err)
-    //     )
+        this.service.auto(this.form.value).subscribe(
+          res=>{
+            console.log(res);
+            this.filteredOptions=res.map(item=>item.title);
+          },
+          err=>console.log(err)
+        )
 
-    //   }
-    // )
+      }
+    )
 
   }
 
