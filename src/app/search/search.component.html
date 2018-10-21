@@ -1,0 +1,86 @@
+
+
+
+        <mat-card>
+            <h1 class="mat-card-title">Search</h1>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group example-form">
+            
+                    <mat-form-field class="example-full-width">
+                      <input 
+                      matInput type="text" 
+                      formControlName="userQuery"
+                       class="form-control" 
+                       placeholder="User Query"
+                       [matAutocomplete]="auto">
+                    </mat-form-field>
+            
+            
+              <mat-error *ngIf="isFieldInvalid('userQuery')">
+                  User Query is required!
+                </mat-error>
+            
+                <mat-autocomplete #auto="matAutocomplete">
+                    
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                      {{ option }}
+                    </mat-option>
+                  </mat-autocomplete>
+              </div>
+              
+            
+              <div class="form-group">
+            
+                <div> <label for="title">Operator:</label></div>
+                  
+                  <mat-radio-group class="example-radio-group" formControlName="operator" >
+              
+            
+                      <mat-radio-button value="AND" class="example-radio-button" >AND</mat-radio-button>
+                      <mat-radio-button value="OR" class="example-radio-button" >OR</mat-radio-button>
+                    </mat-radio-group>
+            
+            
+                  
+            
+              </div>
+            
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            
+            
+            </mat-card>
+            
+
+      bla
+        <mat-card  *ngIf="response">
+            <h1 class="mat-card-title">Search</h1>
+        
+        
+        <h2>Response</h2> 
+        <h4>Query:</h4> 
+        <p>
+          {{response.query}}
+        </p>
+        
+        <h4>Number of Documents Found:</h4> 
+        <p>
+          {{response.nDocs}}
+        </p>
+        
+        
+        <h4>Ranks:</h4> 
+        <ul>
+          <li *ngFor="let rankLine of response.ranks">{{rankLine}}</li>
+        </ul>
+        
+        
+        
+        </mat-card>
+
+
+
+
+
+
+
