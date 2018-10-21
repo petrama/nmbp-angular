@@ -23,8 +23,7 @@ export class MoviesService {
   }
 
   auto(data):Observable<any>{
-    return this.http.get('https://jsonplaceholder.typicode.com/posts')
-    return this.http.post(`${this.moviesUrl}/autocomplete`,data);
+    return this.http.post(`${this.moviesUrl}/auto`,data);
   }
 
 

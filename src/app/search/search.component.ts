@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MoviesService } from '../movies.service';
-import { startWith, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+
 
 
 
@@ -19,7 +18,7 @@ export class SearchComponent implements OnInit {
 
   response=null;
 
-  filteredOptions: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: string[] = [];
 
   //filteredOptions:any[];
 
@@ -55,7 +54,7 @@ export class SearchComponent implements OnInit {
         this.service.auto(this.form.value).subscribe(
           res=>{
             console.log(res);
-            this.filteredOptions=res.map(item=>item.title);
+            this.filteredOptions=res.options;
           },
           err=>console.log(err)
         )

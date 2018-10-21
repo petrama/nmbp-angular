@@ -80,7 +80,8 @@
             <th>Rank</th>
           </tr>
           <tr *ngFor="let rankLine of response.ranks">
-            <td>   {{rankLine.title}}</td>
+            <td>   <div [innerHTML]="rankLine.title">
+            </div></td>
             <td>   <div [innerHTML]="rankLine.description">
             </div></td> 
             <td> {{rankLine.rank}}</td>
@@ -88,16 +89,7 @@
          
         </table>
       
-        <!-- <ul>
-          <li *ngFor="let rankLine of response.ranks">
-            {{rankLine.title}}
-            <div [innerHTML]="rankLine.description">
-            </div>
-           
-            {{rankLine.rank}}
-          </li>
-        </ul>
-         -->
+   
         
         
         </mat-card>
